@@ -115,7 +115,7 @@ pmvnorm <- function(lower=-Inf, upper=Inf, mean=rep(0, length(lower)), corr=NULL
         on.exit(assign(".Random.seed", R.seed, envir = .GlobalEnv))
     }
     #add in a fail safe to see what's going wrong
-    if (!isTRUE(all.equal(sigma, t(sigma))) || any(diag(sigma) < 0){
+    if (!isTRUE(all.equal(sigma, t(sigma))) || any(diag(sigma) < 0)){
 	print("sigma: "); print(sigma)
 	print("lower: "); print(lower)
 	print("upper: "); print(upper)
