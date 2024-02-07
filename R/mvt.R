@@ -114,7 +114,15 @@ pmvnorm <- function(lower=-Inf, upper=Inf, mean=rep(0, length(lower)), corr=NULL
         RNGstate <- structure(seed, kind = as.list(RNGkind()))
         on.exit(assign(".Random.seed", R.seed, envir = .GlobalEnv))
     }
-
+    #add in a fail safe to see what's going wrong
+    if (!isTRUE(all.equal(sigma, t(sigma))) || any(diag(sigma) < 0){
+	print("sigma: "); print(sigma)
+	print("lower: "); print(lower)
+	print("upper: "); print(upper)
+	print("mean: "); print(mean)
+	print("corr: "); print(corr)
+	browser()
+	}	
     carg <- checkmvArgs(lower=lower, upper=upper, mean=mean, corr=corr,
                         sigma=sigma)
     if (!is.null(carg$corr)) {
